@@ -1,9 +1,9 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
 
-app.whenReady().then(() => {
+const createWindow = () => {
   // Create a new browser window with specified width and height
-  const mainWindow = new BrowserWindow({
+  let mainWindow: BrowserWindow | null = new BrowserWindow({
     width: 800, // Set the window width to 800 pixels
     height: 600, // Set the window height to 600 pixels
   })
@@ -21,6 +21,10 @@ app.whenReady().then(() => {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+}
+
+app.whenReady().then(() => {
+  createWindow()
 })
 
 // Listen for the 'window-all-closed' event, which is emitted when all windows are closed
@@ -29,5 +33,13 @@ app.on('window-all-closed', () => {
   // On platforms other than macOS (darwin), quit the application when all windows are closed
   if (process.platform !== 'darwin') {
     app.quit()
+  }
+})
+
+// Listen for the 'activate' event on macOS
+app.on('activate', () => {
+  // On macOS, re-create a window when the dock icon is clicked and no other windows are open
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow()
   }
 })

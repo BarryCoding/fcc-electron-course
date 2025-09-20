@@ -23,5 +23,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "tsconfig.electron.json"],
+  "exclude": ["src/electron"] // Exclude the electron directory from the react app
 }
