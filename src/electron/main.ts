@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
 import { DEV_SERVER_URL, IS_DEV, REACT_ENTRY_HTML } from './util.js'
+import { pollResources } from './resource-manager.js'
 
 const createWindow = () => {
   // Create a new browser window with specified width and height
@@ -8,8 +9,6 @@ const createWindow = () => {
     width: 800, // Set the window width to 800 pixels
     height: 600, // Set the window height to 600 pixels
   })
-
-  console.log('IS_DEV', IS_DEV)
 
   if (IS_DEV) {
     // Load the React app from the development server
@@ -33,6 +32,8 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
   createWindow()
+
+  pollResources()
 })
 
 // Listen for the 'activate' event on macOS
