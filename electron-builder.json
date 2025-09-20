@@ -1,0 +1,7 @@
+{
+  "appId": "com.springer-pro.electron-fcc",
+  "files": ["dist-electron", "dist-react"],
+  "mac": {
+    "target": "dmg"
+  }
+}
