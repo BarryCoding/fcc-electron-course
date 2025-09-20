@@ -10,4 +10,8 @@ export default defineConfig({
   build: {
     outDir: 'dist-react',
   },
+  server: {
+    port: 20251, // Configure the server port to be 20251
+    strictPort: true, // Configure the server to use a strict port
+  },
 })

@@ -6,7 +6,7 @@
   "main": "dist-electron/main.js",
   "scripts": {
     "dev:react": "vite",
-    "dev:electron": "electron .",
+    "dev:electron": "npm run transpile:electron; NODE_ENV=development electron .",
     "build": "tsc -b && vite build",
     "transpile:electron": "tsc --project tsconfig.electron.json",
     "lint": "eslint .",
