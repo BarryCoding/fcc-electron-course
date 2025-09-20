@@ -2,12 +2,16 @@ import { app, BrowserWindow } from 'electron'
 import path from 'path'
 import { DEV_SERVER_URL, IS_DEV, REACT_ENTRY_HTML } from './util.js'
 import { pollResources } from './resource-manager.js'
+import { getPreloadPath } from './path-resolver.js'
 
 const createWindow = () => {
   // Create a new browser window with specified width and height
   let mainWindow: BrowserWindow | null = new BrowserWindow({
     width: 800, // Set the window width to 800 pixels
     height: 600, // Set the window height to 600 pixels
+    webPreferences: {
+      preload: getPreloadPath(),
+    },
   })
 
   if (IS_DEV) {
